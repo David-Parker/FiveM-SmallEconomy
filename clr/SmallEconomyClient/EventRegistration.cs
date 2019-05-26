@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CitizenFX.Core;
 using SmallEconomy.Client.Event;
@@ -18,6 +19,9 @@ namespace SmallEconomy.Client
 
             var useItemEvent = new UseItemClient();
             EventHandlers[Events.UseItemEventClient] += new Func<int, string, Task>(useItemEvent.UseItemEvent);
+
+            var listItemEvent = new ListItemsClient();
+            EventHandlers[Events.ListItemsEventClient] += new Action<string>(listItemEvent.ListItemsEvent);
         }
     }
 }

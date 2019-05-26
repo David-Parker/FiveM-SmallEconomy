@@ -44,13 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ErrorHandler.cs" />
     <Compile Include="EventRegistration.cs" />
     <Compile Include="Event\GetMoneyServer.cs" />
     <Compile Include="DB\IDatabase.cs" />
     <Compile Include="DB\InMemoryDatabase.cs" />
+    <Compile Include="Event\ListItemsServer.cs" />
     <Compile Include="Event\UseItemServer.cs" />
     <Compile Include="ItemInventory.cs" />
-    <Compile Include="Items\Item.cs" />
     <Compile Include="Items\VehicleItem.cs" />
     <Compile Include="OnTick.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

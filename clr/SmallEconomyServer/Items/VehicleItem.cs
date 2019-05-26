@@ -1,6 +1,7 @@
 ﻿using System;
 using CitizenFX.Core;
 using SmallEconomy.Shared;
+using SmallEconomy.Server;
 
 namespace SmallEconomy.Server.Items
 {
@@ -44,6 +45,7 @@ namespace SmallEconomy.Server.Items
         {
             if (this.inUse == true)
             {
+                ErrorHandler.PlayerError(player, "Item already in use");
                 return;
             }
 

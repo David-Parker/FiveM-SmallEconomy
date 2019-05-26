@@ -1,6 +1,6 @@
 ﻿using System;
 using CitizenFX.Core;
-using SmallEconomy.Server.Items;
+using SmallEconomy.Shared;
 
 namespace SmallEconomy.Server.Event
 {
@@ -32,8 +32,10 @@ namespace SmallEconomy.Server.Event
 
             if (item == null)
             {
-                item = new VehicleItem(player, "adder");
-                this.database.AddItemForPlayer(player.Identifiers["steam"], item);
+                ErrorHandler.PlayerError(player, $"You do not have an item at slot {index}");
+                return;
+                //item = new VehicleItem(player, "adder");
+                //this.database.AddItemForPlayer(player.Identifiers["steam"], item);
             }
 
             item.Use();
