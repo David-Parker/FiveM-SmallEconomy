@@ -13,7 +13,7 @@ namespace SmallEconomy.Client.Event
     {
         public ViewStoreClient()
         {
-            API.RegisterCommand("store", new Action<int, List<object>, string>((source, args, raw) =>
+            API.RegisterCommand("se:store", new Action<int, List<object>, string>((source, args, raw) =>
             {
                 if (args.Count != 0)
                 {

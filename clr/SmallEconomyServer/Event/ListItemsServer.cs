@@ -29,7 +29,7 @@ namespace SmallEconomy.Server.Event
                 throw new ArgumentNullException(nameof(player));
             }
 
-            EconomyData data = this.database.GetEconomyDataForPlayer(player.Identifiers["steam"]);
+            EconomyData data = this.database.GetEconomyDataForPlayer(PlayerHandler.GetPlayerId(player));
 
             StringBuilder items = new StringBuilder();
             for (int i = 0; i < data.Items.Count; ++i)

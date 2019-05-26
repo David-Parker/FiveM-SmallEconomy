@@ -30,7 +30,7 @@ namespace SmallEconomy.Server.Event
                 throw new ArgumentNullException(nameof(player));
             }
 
-            string id = player.Identifiers["steam"];
+            string id = PlayerHandler.GetPlayerId(player);
             EconomyData playerData = this.database.GetEconomyDataForPlayer(id);
             StoreListing storeListing = this.database.GetStoreListingData();
 

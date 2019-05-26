@@ -13,7 +13,7 @@ namespace SmallEconomy.Client.Event
     {
         public BuyItemClient()
         {
-            API.RegisterCommand("buyItem", new Action<int, List<object>, string>((source, args, raw) =>
+            API.RegisterCommand("se:buy", new Action<int, List<object>, string>((source, args, raw) =>
             {
                 uint index;
 

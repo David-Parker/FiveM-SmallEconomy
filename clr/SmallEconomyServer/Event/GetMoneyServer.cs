@@ -28,7 +28,7 @@ namespace SmallEconomy.Server.Event
                 throw new ArgumentNullException(nameof(player));
             }
 
-            EconomyData data = this.database.GetEconomyDataForPlayer(player.Identifiers["steam"]);
+            EconomyData data = this.database.GetEconomyDataForPlayer(PlayerHandler.GetPlayerId(player));
 
             TriggerClientEvent(player, Events.GetMoneyEventClient, data.Money);
         }

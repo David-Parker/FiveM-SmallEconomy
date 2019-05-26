@@ -41,7 +41,7 @@ namespace SmallEconomy.Server
 
         private void OnPlayerConnecting([FromSource]Player player, string playerName, dynamic setKickReason, dynamic deferrals)
         {
-            this.database.GetEconomyDataForPlayer(player.Identifiers["steam"]);
+            this.database.GetEconomyDataForPlayer(PlayerHandler.GetPlayerId(player));
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace SmallEconomy.Server
 
             foreach (var player in this.Players)
             {
-                this.database.GetEconomyDataForPlayer(player.Identifiers["steam"]);
+                this.database.GetEconomyDataForPlayer(PlayerHandler.GetPlayerId(player));
             }
         }
     }

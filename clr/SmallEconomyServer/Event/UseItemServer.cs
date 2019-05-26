@@ -28,7 +28,7 @@ namespace SmallEconomy.Server.Event
                 throw new ArgumentNullException(nameof(player));
             }
 
-            Item item = this.database.GetItemForPlayer(player.Identifiers["steam"], index);
+            Item item = this.database.GetItemForPlayer(PlayerHandler.GetPlayerId(player), index);
 
             if (item == null)
             {

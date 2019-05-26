@@ -14,7 +14,7 @@ namespace SmallEconomy.Client.Event
     {
         public UseItemClient()
         {
-            API.RegisterCommand("useItem", new Action<int, List<object>, string>((source, args, raw) =>
+            API.RegisterCommand("se:use", new Action<int, List<object>, string>((source, args, raw) =>
             {
                 uint index;
 

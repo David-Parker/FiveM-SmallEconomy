@@ -13,7 +13,7 @@ namespace SmallEconomy.Client.Event
     {
         public ListItemsClient()
         {
-            API.RegisterCommand("listItems", new Action<int, List<object>, string>((source, args, raw) =>
+            API.RegisterCommand("se:items", new Action<int, List<object>, string>((source, args, raw) =>
             {
                 if (args.Count != 0)
                 {
