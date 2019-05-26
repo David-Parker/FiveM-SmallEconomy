@@ -4,10 +4,13 @@ using CitizenFX.Core;
 
 namespace SmallEconomy.Server
 {
+    /// <summary>
+    /// Events to be called on game tick.
+    /// </summary>
     public class OnTick : BaseScript
     {
         private readonly IDatabase database;
-        private const int PayDayInterval = 1000 * 60; // Every minute
+        private const int PayDayInterval = 1000 * 5; // Every minute
 
         public OnTick(IDatabase database)
         {

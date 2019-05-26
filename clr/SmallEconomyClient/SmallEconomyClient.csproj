@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EventRegistration.cs" />
+    <Compile Include="Event\GetMoneyClient.cs" />
+    <Compile Include="Event\UseItemClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

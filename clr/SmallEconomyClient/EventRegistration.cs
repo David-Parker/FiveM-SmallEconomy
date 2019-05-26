@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using CitizenFX.Core;
-using CitizenFX.Core.Native;
+using SmallEconomy.Client.Event;
 using SmallEconomy.Shared;
 
 namespace SmallEconomy.Client
@@ -13,29 +13,11 @@ namespace SmallEconomy.Client
     {
         public EventRegistration()
         {
-            EventHandlers["onClientResourceStart"] += new Action<string>(OnClientResourceStart);
-        }
+            var moneyEvent = new GetMoneyClient();
+            EventHandlers[Events.GetMoneyEventClient] += new Action<UInt64>(moneyEvent.GetMoneyEvent);
 
-        private void OnClientResourceStart(string resourceName)
-        {
-            if (API.GetCurrentResourceName() != resourceName)
-            {
-                return;
-            }
-
-            API.RegisterCommand("getMoney", new Action<int, List<object>, string>((source, args, raw) =>
-            {
-                if (args.Count != 0)
-                {
-                    TriggerEvent("chat:addMessage", new
-                    {
-                        color = new[] { 255, 0, 0 },
-                        args = new[] { "Invalid Command", "Usage: /getMoney" }
-                    });
-                }
-
-                TriggerServerEvent(Events.GetMoneyEvent, source);
-            }), false);
+            var useItemEvent = new UseItemClient();
+            EventHandlers[Events.UseItemEventClient] += new Func<int, string, Task>(useItemEvent.UseItemEvent);
         }
     }
 }

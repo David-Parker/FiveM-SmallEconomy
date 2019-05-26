@@ -7,11 +7,11 @@ namespace SmallEconomy.Server.Event
     /// <summary>
     /// Server-side event for player to query their current money balance.
     /// </summary>
-    public class GetMoney : BaseScript
+    public class GetMoneyServer : BaseScript
     {
         private readonly IDatabase database;
 
-        public GetMoney(IDatabase database)
+        public GetMoneyServer(IDatabase database)
         {
             if (database == null)
             {
@@ -30,11 +30,7 @@ namespace SmallEconomy.Server.Event
 
             EconomyData data = this.database.GetEconomyDataForPlayer(player.Identifiers["steam"]);
 
-            TriggerClientEvent("chat:addMessage", new
-            {
-                color = new[] { 255, 0, 0 },
-                args = new[] { "[SmallEconomy]", $"Your Money: {data.Money}" }
-            });
+            TriggerClientEvent(player, Events.GetMoneyEventClient, data.Money);
         }
     }
 }

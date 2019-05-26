@@ -1,4 +1,5 @@
 ﻿using System;
+using SmallEconomy.Server.Items;
 using SmallEconomy.Shared;
 
 namespace SmallEconomy.Server
@@ -15,6 +16,16 @@ namespace SmallEconomy.Server
         }
 
         public void UpdateMoneyForAllPlayers(UInt64 amount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddItemForPlayer(string id, Item item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Item GetItemForPlayer(string id, uint index)
         {
             throw new NotImplementedException();
         }
