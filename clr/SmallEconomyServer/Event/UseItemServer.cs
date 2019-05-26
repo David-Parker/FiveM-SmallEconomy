@@ -34,8 +34,6 @@ namespace SmallEconomy.Server.Event
             {
                 ErrorHandler.PlayerError(player, $"You do not have an item at slot {index}");
                 return;
-                //item = new VehicleItem(player, "adder");
-                //this.database.AddItemForPlayer(player.Identifiers["steam"], item);
             }
 
             item.Use();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using SmallEconomy.Shared;
 
 namespace SmallEconomy.Server
@@ -10,12 +11,20 @@ namespace SmallEconomy.Server
     public class InMemoryDatabase : IDatabase
     {
         private readonly static ConcurrentDictionary<string, EconomyData> economyData;
+        private readonly static StoreListing store;
         private readonly static object dataLock;
 
         static InMemoryDatabase()
         {
             economyData = new ConcurrentDictionary<string, EconomyData>();
             dataLock = new object();
+
+            // Create some store items
+            IList<StoreItem> storeItems = new List<StoreItem>();
+            storeItems.Add(new StoreItem(50, new StoreListingItem(ItemType.Vehicle, "adder")));
+            storeItems.Add(new StoreItem(100, new StoreListingItem(ItemType.Vehicle, "infernus")));
+
+            store = new StoreListing(storeItems);
         }
 
         public EconomyData GetEconomyDataForPlayer(string id)
@@ -57,6 +66,28 @@ namespace SmallEconomy.Server
             }
 
             return data.Items[(int)index];
+        }
+
+        public StoreListing GetStoreListingData()
+        {
+            return store;
+        }
+
+        public bool DeductMoneyForPlayer(string id, UInt64 amount)
+        {
+            EconomyData data = GetEconomyDataForPlayer(id);
+
+            if (data.Money < amount)
+            {
+                return false;
+            }
+
+            lock (dataLock)
+            {
+                data.Money -= amount;
+            }
+
+            return true;
         }
     }
 }

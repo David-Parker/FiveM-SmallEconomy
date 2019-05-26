@@ -31,13 +31,17 @@ namespace SmallEconomy.Server
 
             var listItemsEvent = new ListItemsServer(this.database);
             EventHandlers[Events.ListItemsEventServer] += new Action<Player>(listItemsEvent.ListItemsEvent);
+
+            var viewStoreEvent = new ViewStoreServer(this.database);
+            EventHandlers[Events.ViewStoreEventServer] += new Action<Player>(viewStoreEvent.ViewStoreEvent);
+
+            var buyItemEvent = new BuyItemServer(this.database);
+            EventHandlers[Events.BuyItemEventServer] += new Action<uint, Player>(buyItemEvent.BuyItemEvent);
         }
 
         private void OnPlayerConnecting([FromSource]Player player, string playerName, dynamic setKickReason, dynamic deferrals)
         {
-            deferrals.defer();
             this.database.GetEconomyDataForPlayer(player.Identifiers["steam"]);
-            deferrals.done();
         }
 
         /// <summary>

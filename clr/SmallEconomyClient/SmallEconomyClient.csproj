@@ -45,9 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EventRegistration.cs" />
+    <Compile Include="Event\BuyItemClient.cs" />
     <Compile Include="Event\GetMoneyClient.cs" />
     <Compile Include="Event\ListItemsClient.cs" />
     <Compile Include="Event\UseItemClient.cs" />
+    <Compile Include="Event\ViewStoreClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

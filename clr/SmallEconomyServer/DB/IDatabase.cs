@@ -1,5 +1,4 @@
 ﻿using System;
-using SmallEconomy.Server.Items;
 using SmallEconomy.Shared;
 
 namespace SmallEconomy.Server
@@ -10,7 +9,9 @@ namespace SmallEconomy.Server
     public interface IDatabase
     {
         EconomyData GetEconomyDataForPlayer(string id);
+        StoreListing GetStoreListingData();
         void UpdateMoneyForAllPlayers(UInt64 amount);
+        bool DeductMoneyForPlayer(string id, UInt64 amount);
         void AddItemForPlayer(string id, Item item);
         Item GetItemForPlayer(string id, uint index);
     }

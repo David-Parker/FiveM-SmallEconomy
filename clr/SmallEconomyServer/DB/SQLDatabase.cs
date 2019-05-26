@@ -29,5 +29,15 @@ namespace SmallEconomy.Server
         {
             throw new NotImplementedException();
         }
+
+        public StoreListing GetStoreListingData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DeductMoneyForPlayer(string id, UInt64 amount)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
