@@ -20,7 +20,7 @@ namespace SmallEconomy.Client.Event
                     TriggerEvent("chat:addMessage", new
                     {
                         color = new[] { 255, 0, 0 },
-                        args = new[] { "Invalid Command", "Usage: /getMoney" }
+                        args = new[] { "Invalid Command", "Usage: /se:money" }
                     });
 
                     return;

@@ -37,6 +37,9 @@ namespace SmallEconomy.Server
 
             var buyItemEvent = new BuyItemServer(this.database);
             EventHandlers[Events.BuyItemEventServer] += new Action<uint, Player>(buyItemEvent.BuyItemEvent);
+
+            var stashItemEvent = new StashItemServer(this.database);
+            EventHandlers[Events.StashItemEventServer] += new Action<uint, Player>(stashItemEvent.StashItemEvent);
         }
 
         private void OnPlayerConnecting([FromSource]Player player, string playerName, dynamic setKickReason, dynamic deferrals)

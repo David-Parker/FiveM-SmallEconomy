@@ -1,5 +1,4 @@
 ﻿using System;
-using SmallEconomy.Server.Items;
 using SmallEconomy.Shared;
 
 namespace SmallEconomy.Server

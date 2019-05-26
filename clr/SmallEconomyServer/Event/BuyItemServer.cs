@@ -47,20 +47,18 @@ namespace SmallEconomy.Server.Event
                 ErrorHandler.PlayerError(player, $"You cannot afford {storeItem.Item.DisplayName}");
                 return;
             }
-            else
+
+            // Deduct money
+            bool success = this.database.DeductMoneyForPlayer(id, storeItem.Price);
+
+            if (success == false)
             {
-                // Deduct money
-                bool success = this.database.DeductMoneyForPlayer(id, storeItem.Price);
-
-                if (success == false)
-                {
-                    ErrorHandler.PlayerError(player, $"Error with database transaction, please retry purchase.");
-                    return;
-                }
-
-                // Give item
-                this.database.AddItemForPlayer(id, ItemCloningFactory.Clone(storeItem.Item, player));
+                ErrorHandler.PlayerError(player, $"Error with database transaction, please retry purchase.");
+                return;
             }
+
+            // Give item
+            this.database.AddItemForPlayer(id, ItemCloningFactory.Clone(storeItem.Item, player));
 
             TriggerClientEvent(player, Events.BuyItemEventClient, true, storeItem.Item.DisplayName);
         }

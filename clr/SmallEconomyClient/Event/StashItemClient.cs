@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
+using SmallEconomy.Client.Items;
 using SmallEconomy.Shared;
 
 namespace SmallEconomy.Client.Event
@@ -9,11 +10,11 @@ namespace SmallEconomy.Client.Event
     /// <summary>
     /// Client-side event for user to use an item in their inventory.
     /// </summary>
-    public class BuyItemClient : BaseScript
+    public class StashItemClient : BaseScript
     {
-        public BuyItemClient()
+        public StashItemClient()
         {
-            API.RegisterCommand("se:buy", new Action<int, List<object>, string>((source, args, raw) =>
+            API.RegisterCommand("se:stash", new Action<int, List<object>, string>((source, args, raw) =>
             {
                 uint index;
 
@@ -22,26 +23,19 @@ namespace SmallEconomy.Client.Event
                     TriggerEvent("chat:addMessage", new
                     {
                         color = new[] { 255, 0, 0 },
-                        args = new[] { "Invalid Command", "Usage: /se:buy index" }
+                        args = new[] { "Invalid Command", "Usage: /se:stash index" }
                     });
 
                     return;
                 }
 
-                TriggerServerEvent(Events.BuyItemEventServer, index, source);
+                TriggerServerEvent(Events.StashItemEventServer, index, source);
             }), false);
         }
 
-        public void BuyItemEvent(bool succeeded, string item)
+        public void StashItemEvent(string handle)
         {
-            if (succeeded)
-            {
-                TriggerEvent("chat:addMessage", new
-                {
-                    color = new[] { 255, 0, 0 },
-                    args = new[] { "[SmallEconomy]", $"You successfully bought a {item}!" }
-                });
-            }
+            InuseItemInventory.Remove(handle);
         }
     }
 }

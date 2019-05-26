@@ -1,18 +1,15 @@
 ﻿using System;
 using CitizenFX.Core;
 using SmallEconomy.Shared;
-using SmallEconomy.Server;
 
 namespace SmallEconomy.Server.Items
 {
     /// <summary>
     /// Vehicle item.
     /// </summary>
-    public class VehicleItem : BaseScript, Item
+    public class VehicleItem : ItemBase
     {
         private readonly string model;
-        private readonly Player player;
-        private bool inUse;
 
         public VehicleItem(Player player, string model)
         {
@@ -28,20 +25,19 @@ namespace SmallEconomy.Server.Items
 
             this.model = model;
             this.player = player;
-            this.inUse = false;
         }
 
-        public ItemType Type
+        public override ItemType Type
         {
             get { return ItemType.Vehicle; }
         }
 
-        public string DisplayName
+        public override string DisplayName
         {
             get { return this.model; }
         }
 
-        public void Use()
+        public override void Use()
         {
             if (this.inUse == true)
             {
@@ -51,13 +47,18 @@ namespace SmallEconomy.Server.Items
 
             this.inUse = true;
 
-            TriggerClientEvent(this.player, Events.UseItemEventClient, (int)this.Type, this.model);
+            TriggerClientEvent(this.player, Events.UseItemEventClient, this.Handle, (int)this.Type, this.model);
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
+            if (this.inUse == false)
+            {
+                ErrorHandler.PlayerError(player, "Item not in use");
+            }
+
             this.inUse = false;
-            throw new NotImplementedException();
+            TriggerClientEvent(this.player, Events.StashItemEventClient, this.Handle);
         }
     }
 }

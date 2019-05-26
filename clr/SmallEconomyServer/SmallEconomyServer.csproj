@@ -51,8 +51,10 @@
     <Compile Include="DB\IDatabase.cs" />
     <Compile Include="DB\InMemoryDatabase.cs" />
     <Compile Include="Event\ListItemsServer.cs" />
+    <Compile Include="Event\StashItemServer.cs" />
     <Compile Include="Event\UseItemServer.cs" />
     <Compile Include="Event\ViewStoreServer.cs" />
+    <Compile Include="Items\ItemBase.cs" />
     <Compile Include="Items\ItemCloningFactory.cs" />
     <Compile Include="Items\VehicleItem.cs" />
     <Compile Include="OnTick.cs" />

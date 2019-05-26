@@ -17,7 +17,7 @@ namespace SmallEconomy.Client
             EventHandlers[Events.GetMoneyEventClient] += new Action<UInt64>(moneyEvent.GetMoneyEvent);
 
             var useItemEvent = new UseItemClient();
-            EventHandlers[Events.UseItemEventClient] += new Func<int, string, Task>(useItemEvent.UseItemEvent);
+            EventHandlers[Events.UseItemEventClient] += new Func<string, int, string, Task>(useItemEvent.UseItemEvent);
 
             var listItemEvent = new ListItemsClient();
             EventHandlers[Events.ListItemsEventClient] += new Action<string>(listItemEvent.ListItemsEvent);
@@ -27,6 +27,9 @@ namespace SmallEconomy.Client
 
             var buyItemEvent = new BuyItemClient();
             EventHandlers[Events.BuyItemEventClient] += new Action<bool, string>(buyItemEvent.BuyItemEvent);
+
+            var stashItemEvent = new StashItemClient();
+            EventHandlers[Events.StashItemEventClient] += new Action<string>(stashItemEvent.StashItemEvent);
         }
     }
 }

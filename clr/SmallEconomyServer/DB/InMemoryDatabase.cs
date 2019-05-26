@@ -21,8 +21,8 @@ namespace SmallEconomy.Server
 
             // Create some store items
             IList<StoreItem> storeItems = new List<StoreItem>();
-            storeItems.Add(new StoreItem(50, new StoreListingItem(ItemType.Vehicle, "adder")));
-            storeItems.Add(new StoreItem(100, new StoreListingItem(ItemType.Vehicle, "infernus")));
+            storeItems.Add(new StoreItem(0, new StoreListingItem(ItemType.Vehicle, "adder")));
+            storeItems.Add(new StoreItem(0, new StoreListingItem(ItemType.Vehicle, "infernus")));
 
             store = new StoreListing(storeItems);
         }
