@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <ItemGroup>
+    <ProjectFile Include=".\SmallEconomyClient\SmallEconomyClient.csproj"/>
+    <ProjectFile Include=".\SmallEconomyServer\SmallEconomyServer.csproj"/>
+  </ItemGroup>
+  <Target Name="DropResources" AfterTargets="Build">
+    <ItemGroup>
+      <CsProj Include=".\SmallEconomyClient\SmallEconomyClient.csproj">
+        <DropLocation>..\..\..\resources\[small-econ]\small-econ-client</DropLocation>
+      </CsProj>
+      <CsProj Include=".\SmallEconomyServer\SmallEconomyServer.csproj">
+        <DropLocation>..\..\..\resources\[small-econ]\small-econ-server</DropLocation>
+      </CsProj>
+    </ItemGroup>
+    <MSBuild Projects="@(CsProj)" Targets="Build;DropBinaries" Properties="DropPath=%(CsProj.DropLocation)" />
+  </Target>
+</Project>
