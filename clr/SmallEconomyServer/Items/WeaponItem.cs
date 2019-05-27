@@ -7,11 +7,11 @@ namespace SmallEconomy.Server.Items
     /// <summary>
     /// Vehicle item.
     /// </summary>
-    public class VehicleItem : ItemBase
+    public class WeaponItem : ItemBase
     {
         private readonly string model;
 
-        public VehicleItem(Player player, string model)
+        public WeaponItem(Player player, string model)
         {
             if (String.IsNullOrEmpty(model))
             {
@@ -29,7 +29,7 @@ namespace SmallEconomy.Server.Items
 
         public override ItemType Type
         {
-            get { return ItemType.Vehicle; }
+            get { return ItemType.Weapon; }
         }
 
         public override string DisplayName

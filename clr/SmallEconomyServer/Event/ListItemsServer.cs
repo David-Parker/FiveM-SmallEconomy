@@ -34,7 +34,7 @@ namespace SmallEconomy.Server.Event
             StringBuilder items = new StringBuilder();
             for (int i = 0; i < data.Items.Count; ++i)
             {
-                items.AppendFormat("{0}:{1}", i, data.Items[i].DisplayName);
+                items.AppendFormat("[{0}]: {1}", i, data.Items[i].DisplayName);
 
                 if (i < data.Items.Count - 1)
                 {

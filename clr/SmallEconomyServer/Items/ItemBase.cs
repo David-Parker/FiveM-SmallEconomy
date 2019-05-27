@@ -21,6 +21,16 @@ namespace SmallEconomy.Server.Items
         public abstract ItemType Type { get; }
         public abstract string DisplayName { get; }
         public abstract void Use();
-        public abstract void Dispose();
+
+        public void Dispose()
+        {
+            if (this.inUse == false)
+            {
+                ErrorHandler.PlayerError(player, "Item not in use");
+            }
+
+            this.inUse = false;
+            TriggerClientEvent(this.player, Events.StashItemEventClient, this.Handle);
+        }
     }
 }

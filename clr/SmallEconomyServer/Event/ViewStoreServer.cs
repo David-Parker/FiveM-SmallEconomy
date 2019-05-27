@@ -41,6 +41,10 @@ namespace SmallEconomy.Server.Event
                 {
                     items.Append(", ");
                 }
+                if (i != 0 && i % 2 == 0)
+                {
+                    items.Append("\r\n");
+                }
             }
 
             TriggerClientEvent(player, Events.ViewStoreEventClient, items.ToString());

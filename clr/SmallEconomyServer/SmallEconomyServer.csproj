@@ -57,6 +57,7 @@
     <Compile Include="Items\ItemBase.cs" />
     <Compile Include="Items\ItemCloningFactory.cs" />
     <Compile Include="Items\VehicleItem.cs" />
+    <Compile Include="Items\WeaponItem.cs" />
     <Compile Include="OnTick.cs" />
     <Compile Include="PlayerHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

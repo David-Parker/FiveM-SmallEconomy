@@ -21,11 +21,7 @@ namespace SmallEconomy.Client.Event
 
                 if (args.Count != 1 || uint.TryParse(args[0] as string, out index) == false)
                 {
-                    TriggerEvent("chat:addMessage", new
-                    {
-                        color = new[] { 255, 0, 0 },
-                        args = new[] { "Invalid Command", "Usage: /se:use index" }
-                    });
+                    ClientHandler.PlayerError("Usage: /se:use index");
 
                     return;
                 }
@@ -43,6 +39,9 @@ namespace SmallEconomy.Client.Event
                 case ItemType.Vehicle:
                     await UseVehicle(handle, type, param);
                     break;
+                case ItemType.Weapon:
+                    UseWeapon(handle, type, param);
+                    break;
             }
         }
 
@@ -51,22 +50,26 @@ namespace SmallEconomy.Client.Event
             var hash = (uint)API.GetHashKey(param);
             if (!API.IsModelInCdimage(hash) || !API.IsModelAVehicle(hash))
             {
-                TriggerEvent("chat:addMessage", new
-                {
-                    color = new[] { 255, 0, 0 },
-                    args = new[] { "[SmallEconomy Error]", $"A vehicle was attempted to be loaded with an invalid model type." }
-                });
+                ClientHandler.PlayerError($"A vehicle was attempted to be loaded with an invalid model type.");
 
                 return;
             }
 
             var vehicle = await World.CreateVehicle(param, Game.PlayerPed.Position, Game.PlayerPed.Heading);
-
             ItemHandle vHandle = new VehicleItemHandle(handle, vehicle);
-
             InuseItemInventory.Add(handle, vHandle);
 
             Game.PlayerPed.SetIntoVehicle(vehicle, VehicleSeat.Driver);
+        }
+
+        private void UseWeapon(string handle, int type, string param)
+        {
+            WeaponHash hash = (WeaponHash)API.GetHashKey(param);
+
+            ItemHandle wHandle = new WeaponItemHandle(handle, hash);
+            InuseItemInventory.Add(handle, wHandle);
+
+            API.GiveWeaponToPed(Game.PlayerPed.Handle, (uint)hash, 999, false, true);
         }
     }
 }

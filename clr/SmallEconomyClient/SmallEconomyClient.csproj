@@ -54,6 +54,7 @@
     <Compile Include="Items\ItemHandle.cs" />
     <Compile Include="Items\InuseItemInventory.cs" />
     <Compile Include="Items\VehicleItemHandle.cs" />
+    <Compile Include="Items\WeaponItemHandle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

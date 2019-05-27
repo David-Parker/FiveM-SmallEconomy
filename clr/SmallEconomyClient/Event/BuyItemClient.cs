@@ -19,12 +19,7 @@ namespace SmallEconomy.Client.Event
 
                 if (args.Count != 1 || uint.TryParse(args[0] as string, out index) == false)
                 {
-                    TriggerEvent("chat:addMessage", new
-                    {
-                        color = new[] { 255, 0, 0 },
-                        args = new[] { "Invalid Command", "Usage: /se:buy index" }
-                    });
-
+                    ClientHandler.PlayerError("Usage: /se:buy index");
                     return;
                 }
 
@@ -36,11 +31,7 @@ namespace SmallEconomy.Client.Event
         {
             if (succeeded)
             {
-                TriggerEvent("chat:addMessage", new
-                {
-                    color = new[] { 255, 0, 0 },
-                    args = new[] { "[SmallEconomy]", $"You successfully bought a {item}!" }
-                });
+                ClientHandler.PlayerInfo($"You successfully bought a {item}!");
             }
         }
     }

@@ -23,6 +23,9 @@ namespace SmallEconomy.Server
             IList<StoreItem> storeItems = new List<StoreItem>();
             storeItems.Add(new StoreItem(0, new StoreListingItem(ItemType.Vehicle, "adder")));
             storeItems.Add(new StoreItem(0, new StoreListingItem(ItemType.Vehicle, "infernus")));
+            storeItems.Add(new StoreItem(0, new StoreListingItem(ItemType.Vehicle, "coquette")));
+            storeItems.Add(new StoreItem(0, new StoreListingItem(ItemType.Weapon, "WEAPON_MG")));
+            storeItems.Add(new StoreItem(0, new StoreListingItem(ItemType.Weapon, "WEAPON_SMGMk2")));
 
             store = new StoreListing(storeItems);
         }

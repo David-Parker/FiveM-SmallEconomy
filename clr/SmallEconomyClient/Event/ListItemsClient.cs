@@ -17,11 +17,7 @@ namespace SmallEconomy.Client.Event
             {
                 if (args.Count != 0)
                 {
-                    TriggerEvent("chat:addMessage", new
-                    {
-                        color = new[] { 255, 0, 0 },
-                        args = new[] { "Invalid Command", "Usage: /se:items" }
-                    });
+                    ClientHandler.PlayerError("Usage: /se:items");
 
                     return;
                 }
@@ -32,11 +28,7 @@ namespace SmallEconomy.Client.Event
 
         public void ListItemsEvent(string items)
         {
-            TriggerEvent("chat:addMessage", new
-            {
-                color = new[] { 255, 0, 0 },
-                args = new[] { "[SmallEconomy]", $"Your Items: {items}" }
-            });
+            ClientHandler.PlayerInfo($"Your Items: {items}");
         }
     }
 }

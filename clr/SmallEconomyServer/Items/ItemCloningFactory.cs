@@ -18,6 +18,9 @@ namespace SmallEconomy.Server.Items
                 case ItemType.Vehicle:
                     newItem = new VehicleItem(forPlayer, itemToClone.DisplayName);
                     break;
+                case ItemType.Weapon:
+                    newItem = new WeaponItem(forPlayer, itemToClone.DisplayName);
+                    break;
                 default:
                     throw new InvalidOperationException("Enum out of range.");
             }
