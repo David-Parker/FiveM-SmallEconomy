@@ -5,11 +5,11 @@ namespace SmallEconomy.Client.Items
     /// <summary>
     /// Keeps track of all the client's in-use items.
     /// </summary>
-    public static class InuseItemInventory
+    public static class InUseItemInventory
     {
         private static readonly ConcurrentDictionary<string, ItemHandle> items;
 
-        static InuseItemInventory()
+        static InUseItemInventory()
         {
             items = new ConcurrentDictionary<string, ItemHandle>();
         }

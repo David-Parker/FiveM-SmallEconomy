@@ -25,7 +25,7 @@ namespace SmallEconomy.Server
             storeItems.Add(new StoreItem(0, new StoreListingItem(ItemType.Vehicle, "infernus")));
             storeItems.Add(new StoreItem(0, new StoreListingItem(ItemType.Vehicle, "coquette")));
             storeItems.Add(new StoreItem(0, new StoreListingItem(ItemType.Weapon, "WEAPON_MG")));
-            storeItems.Add(new StoreItem(0, new StoreListingItem(ItemType.Weapon, "WEAPON_SMGMk2")));
+            storeItems.Add(new StoreItem(0, new StoreListingItem(ItemType.Drug, "Beer")));
 
             store = new StoreListing(storeItems);
         }

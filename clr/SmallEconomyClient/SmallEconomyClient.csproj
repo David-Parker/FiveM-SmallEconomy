@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientHandler.cs" />
     <Compile Include="EventRegistration.cs" />
     <Compile Include="Event\BuyItemClient.cs" />
     <Compile Include="Event\GetMoneyClient.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="Event\StashItemClient.cs" />
     <Compile Include="Event\UseItemClient.cs" />
     <Compile Include="Event\ViewStoreClient.cs" />
+    <Compile Include="Items\DrugItemHandle.cs" />
     <Compile Include="Items\ItemHandle.cs" />
     <Compile Include="Items\InuseItemInventory.cs" />
     <Compile Include="Items\VehicleItemHandle.cs" />

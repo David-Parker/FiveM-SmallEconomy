@@ -54,6 +54,7 @@
     <Compile Include="Event\StashItemServer.cs" />
     <Compile Include="Event\UseItemServer.cs" />
     <Compile Include="Event\ViewStoreServer.cs" />
+    <Compile Include="Items\DrugItem.cs" />
     <Compile Include="Items\ItemBase.cs" />
     <Compile Include="Items\ItemCloningFactory.cs" />
     <Compile Include="Items\VehicleItem.cs" />

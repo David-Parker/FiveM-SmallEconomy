@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
@@ -34,42 +35,81 @@ namespace SmallEconomy.Client.Event
         {
             ItemType itemType = (ItemType)type;
 
+            ItemHandle iHandle;
+
             switch (itemType)
             {
                 case ItemType.Vehicle:
-                    await UseVehicle(handle, type, param);
+                    iHandle = await UseVehicle(handle, type, param);
                     break;
                 case ItemType.Weapon:
-                    UseWeapon(handle, type, param);
+                    iHandle = UseWeapon(handle, type, param);
                     break;
+                case ItemType.Drug:
+                    iHandle = await UseDrug(handle, type, param);
+                    break;
+                default:
+                    ClientHandler.PlayerError($"Invalid enum.");
+                    return;
             }
+
+            if (iHandle == null)
+            {
+                return;
+            }
+
+            InUseItemInventory.Add(handle, iHandle);
         }
 
-        private async Task UseVehicle(string handle, int type, string param)
+        private async Task<ItemHandle> UseVehicle(string handle, int type, string param)
         {
             var hash = (uint)API.GetHashKey(param);
             if (!API.IsModelInCdimage(hash) || !API.IsModelAVehicle(hash))
             {
                 ClientHandler.PlayerError($"A vehicle was attempted to be loaded with an invalid model type.");
 
-                return;
+                return null;
             }
 
             var vehicle = await World.CreateVehicle(param, Game.PlayerPed.Position, Game.PlayerPed.Heading);
-            ItemHandle vHandle = new VehicleItemHandle(handle, vehicle);
-            InuseItemInventory.Add(handle, vHandle);
+            ItemHandle iHandle = new VehicleItemHandle(handle, vehicle);
 
             Game.PlayerPed.SetIntoVehicle(vehicle, VehicleSeat.Driver);
+
+            return iHandle;
         }
 
-        private void UseWeapon(string handle, int type, string param)
+        private ItemHandle UseWeapon(string handle, int type, string param)
         {
             WeaponHash hash = (WeaponHash)API.GetHashKey(param);
 
-            ItemHandle wHandle = new WeaponItemHandle(handle, hash);
-            InuseItemInventory.Add(handle, wHandle);
+            ItemHandle iHandle = new WeaponItemHandle(handle, hash);
 
             API.GiveWeaponToPed(Game.PlayerPed.Handle, (uint)hash, 999, false, true);
+
+            return iHandle;
+        }
+
+        private async Task<ItemHandle> UseDrug(string handle, int type, string param)
+        {
+            ItemHandle iHandle = new DrugItemHandle(handle);
+
+            if (API.HasAnimSetLoaded("MOVE_M@DRUNK@VERYDRUNK") == false)
+            {
+                API.RequestAnimSet("MOVE_M@DRUNK@VERYDRUNK");
+
+                while (API.HasAnimSetLoaded("MOVE_M@DRUNK@VERYDRUNK") == false)
+                {
+                    await Delay(10);
+                }
+            }
+
+            API.SetPedIsDrunk(API.GetPlayerPed(-1), true);
+            API.ShakeGameplayCam("DRUNK_SHAKE", 1.0f);
+            API.SetPedConfigFlag(API.GetPlayerPed(-1), 100, true);
+            API.SetPedMovementClipset(API.GetPlayerPed(-1), "MOVE_M@DRUNK@VERYDRUNK", 1.0f);
+
+            return iHandle;
         }
     }
 }
