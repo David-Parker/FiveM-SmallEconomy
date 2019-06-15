@@ -38,5 +38,10 @@ namespace SmallEconomy.Server
         {
             throw new NotImplementedException();
         }
+
+        public bool AddMoneyForPlayer(string id, ulong amount)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

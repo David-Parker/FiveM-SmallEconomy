@@ -48,6 +48,7 @@
     <Compile Include="EventRegistration.cs" />
     <Compile Include="Event\BuyItemClient.cs" />
     <Compile Include="Event\GetMoneyClient.cs" />
+    <Compile Include="Event\HelpEventClient.cs" />
     <Compile Include="Event\ListItemsClient.cs" />
     <Compile Include="Event\StashItemClient.cs" />
     <Compile Include="Event\UseItemClient.cs" />
@@ -65,7 +66,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\.vs\SmallEconomyShared\SmallEconomyShared.csproj">
+    <ProjectReference Include="..\SmallEconomyShared\SmallEconomyShared.csproj">
       <Project>{3429359d-0500-47a1-b546-c25959d9966f}</Project>
       <Name>SmallEconomyShared</Name>
     </ProjectReference>

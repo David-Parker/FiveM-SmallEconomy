@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using CitizenFX.Core;
+using SmallEconomy.Shared;
 
 namespace SmallEconomy.Server
 {
@@ -10,7 +11,7 @@ namespace SmallEconomy.Server
     public class OnTick : BaseScript
     {
         private readonly IDatabase database;
-        private const int PayDayInterval = 1000 * 5; // Every minute
+        private const int PayDayInterval = 1000 * 120; // Every two minute
 
         public OnTick(IDatabase database)
         {
@@ -24,7 +25,17 @@ namespace SmallEconomy.Server
 
         public async Task Payday()
         {
-            this.database.UpdateMoneyForAllPlayers(5);
+            foreach (var player in this.Players)
+            {
+                string id = PlayerHandler.GetPlayerId(player);
+                EconomyData economyData = this.database.GetEconomyDataForPlayer(id);
+                Job playerJob = economyData.Job;
+                UInt64 money = playerJob.pay;
+                this.database.AddMoneyForPlayer(id, money);
+
+                PlayerHandler.Announce(player, $"You just got paid ${money}.");
+            }
+
             await Delay(PayDayInterval);
         }
     }

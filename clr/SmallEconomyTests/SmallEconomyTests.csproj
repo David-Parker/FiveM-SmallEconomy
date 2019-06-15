@@ -59,13 +59,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\.vs\SmallEconomyShared\SmallEconomyShared.csproj">
-      <Project>{3429359D-0500-47A1-B546-C25959D9966F}</Project>
-      <Name>SmallEconomyShared</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SmallEconomyServer\SmallEconomyServer.csproj">
       <Project>{FD1B14BF-A825-4D15-A506-A7DE7408CA6F}</Project>
       <Name>SmallEconomyServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmallEconomyShared\SmallEconomyShared.csproj">
+      <Project>{3429359d-0500-47a1-b546-c25959d9966f}</Project>
+      <Name>SmallEconomyShared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

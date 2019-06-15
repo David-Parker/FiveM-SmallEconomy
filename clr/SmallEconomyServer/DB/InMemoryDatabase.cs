@@ -92,5 +92,17 @@ namespace SmallEconomy.Server
 
             return true;
         }
+
+        public bool AddMoneyForPlayer(string id, ulong amount)
+        {
+            EconomyData data = GetEconomyDataForPlayer(id);
+
+            lock (dataLock)
+            {
+                data.Money += amount;
+            }
+
+            return true;
+        }
     }
 }

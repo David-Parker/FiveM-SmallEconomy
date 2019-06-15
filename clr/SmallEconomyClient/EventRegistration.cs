@@ -13,6 +13,8 @@ namespace SmallEconomy.Client
     {
         public EventRegistration()
         {
+            var helpEvent = new HelpEventClient();
+
             var moneyEvent = new GetMoneyClient();
             EventHandlers[Events.GetMoneyEventClient] += new Action<UInt64>(moneyEvent.GetMoneyEvent);
 
